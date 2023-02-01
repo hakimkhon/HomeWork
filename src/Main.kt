@@ -1,3 +1,4 @@
 fun main() {
-    print(3)
+    val a = 23
+    var b = 29
 }
