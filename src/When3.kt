@@ -1,32 +1,58 @@
 fun main() {
     print("1 va 999999999 oralig'ida son kiriting\nn=")
     var n = readLine()!!.toInt()
-    print(tekshirish(n))
+    print(checking(n))
 }
 
-fun tekshirish(n: Int): String{
-    var javob:String = ""
+fun checking(n: Int): String{
+    var isOne: Boolean = true
+    var isTen: Boolean  = false
+    var isHundred: Boolean  = false
+    var haveNumber: Boolean  = false
+
+    var answer:String = ""
     val numberSize = n.toString().length
     var son = n
+
     if (numberSize > 9) {
         print("kiritilgan son 1 va 999999999 oralig'ida emas...")
     }else if (n == 0) {
         print("nol")
     }else
         for (i in 1..numberSize) {
-            if (i == 1) {
-                javob = ones(son % 10)
-                son /= 10
+            if (isOne) {
+                if (haveAndNot(son % 10)){
+                    answer = "${one(son % 10)}"
+                    haveNumber = true
+                    isOne = false
+                    isTen = true
+                    son /= 10
+                } else{
+                    isOne = false
+                    isTen = true
+                    son /= 10
+                }
             }
-            if (i == 2) {
-                if (son % 10 == 0) {
+            if (isTen) {
+                if (haveAndNot(son % 10)){
+                    answer = "${one(son % 10)} $answer"
+                    haveNumber = true
+                    isHundred = true
+                    isTen = false
                     son /= 10
-                    continue
-                }
-                else{
-                    javob = tens(son % 10) + " " + javob
+                } else{
+                    isHundred = true
+                    isTen = false
                     son /= 10
                 }
+//                if (son % 10 == 0) {
+//                    son /= 10
+//                    continue
+//                }
+//                else{
+//                    answer = ten(son % 10) + " " + answer
+//                    son /= 10
+//                }
             }
             if (i == 3) {
                 if (son % 10 == 0) {
@@ -34,7 +60,7 @@ fun tekshirish(n: Int): String{
                     continue
                 }
                 else{
-                    javob = "${hundreds(n = son % 10)} yuz $javob"
+                    answer = hundred(son % 10) + " yuz " + answer
                     son /= 10
                 }
             }
@@ -44,12 +70,12 @@ fun tekshirish(n: Int): String{
                     continue
                 }
                 else{
-                    javob = ones(son % 10) + " ming " + javob
+                    answer = one(son % 10) + " ming " + answer
                     son /= 10
                 }
             }
             if (i == 5) {
-                javob = tens(son % 10) + " " + javob
+                answer = ten(son % 10) + " " + answer
                 son /= 10
             }
             if (i == 6) {
@@ -58,7 +84,7 @@ fun tekshirish(n: Int): String{
                     continue
                 }
                 else{
-                    javob = hundreds(son % 10) + " yuz " + javob
+                    answer = hundred(son % 10) + " yuz " + answer
                     son /= 10
                 }
             }
@@ -68,12 +94,12 @@ fun tekshirish(n: Int): String{
                     continue
                 }
                 else{
-                    javob = ones(son % 10) + " million " + javob
+                    answer = one(son % 10) + " million " + answer
                     son /= 10
                 }
             }
             if (i == 8) {
-                javob = tens(son % 10) + " " + javob
+                answer = ten(son % 10) + " " + answer
                 son /= 10
             }
             if (i == 9) {
@@ -82,14 +108,19 @@ fun tekshirish(n: Int): String{
                     continue
                 }
                 else{
-                    javob = hundreds(son % 10) + " yuz " + javob
+                    answer = hundred(son % 10) + " yuz " + answer
                     son /= 10
                 }
             }
         }
-    return javob
+    return answer
 }
-fun hundreds(n: Int): String {
+
+fun haveAndNot(i: Int): Boolean {
+    return (i != 0)
+}
+
+fun hundred(n: Int): String {
     val result =  when(n){
         0 -> ""
         1 -> "bir"
@@ -104,7 +135,7 @@ fun hundreds(n: Int): String {
     }
     return result
 }
-fun tens(n: Int): String {
+fun ten(n: Int): String {
     val result =  when(n){
         0 -> ""
         1 -> "o'n"
@@ -119,7 +150,7 @@ fun tens(n: Int): String {
     }
     return result
 }
-fun ones(n: Int): String {
+fun one(n: Int): String {
     val result = when(n){
         0 -> ""
         1 -> "bir"
