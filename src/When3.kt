@@ -45,64 +45,8 @@ fun checking(n: Int): String{
                     isTen = false
                     son /= 10
                 }
-//                if (son % 10 == 0) {
-//                    son /= 10
-//                    continue
-//                }
-//                else{
-//                    answer = ten(son % 10) + " " + answer
-//                    son /= 10
-//                }
             }
             if (i == 3) {
-                if (son % 10 == 0) {
-                    son /= 10
-                    continue
-                }
-                else{
-                    answer = hundred(son % 10) + " yuz " + answer
-                    son /= 10
-                }
-            }
-            if (i == 4) {
-                if (son % 10 == 0) {
-                    son /= 10
-                    continue
-                }
-                else{
-                    answer = one(son % 10) + " ming " + answer
-                    son /= 10
-                }
-            }
-            if (i == 5) {
-                answer = ten(son % 10) + " " + answer
-                son /= 10
-            }
-            if (i == 6) {
-                if (son % 10 == 0) {
-                    son /= 10
-                    continue
-                }
-                else{
-                    answer = hundred(son % 10) + " yuz " + answer
-                    son /= 10
-                }
-            }
-            if (i == 7) {
-                if (son % 10 == 0) {
-                    son /= 10
-                    continue
-                }
-                else{
-                    answer = one(son % 10) + " million " + answer
-                    son /= 10
-                }
-            }
-            if (i == 8) {
-                answer = ten(son % 10) + " " + answer
-                son /= 10
-            }
-            if (i == 9) {
                 if (son % 10 == 0) {
                     son /= 10
                     continue
@@ -122,7 +66,6 @@ fun haveAndNot(i: Int): Boolean {
 
 fun hundred(n: Int): String {
     val result =  when(n){
-        0 -> ""
         1 -> "bir"
         2 -> "ikki"
         3 -> "uch"
@@ -135,9 +78,9 @@ fun hundred(n: Int): String {
     }
     return result
 }
+
 fun ten(n: Int): String {
     val result =  when(n){
-        0 -> ""
         1 -> "o'n"
         2 -> "yigirma"
         3 -> "o'ttiz"
@@ -150,9 +93,9 @@ fun ten(n: Int): String {
     }
     return result
 }
+
 fun one(n: Int): String {
     val result = when(n){
-        0 -> ""
         1 -> "bir"
         2 -> "ikki"
         3 -> "uch"
