@@ -1,6 +1,9 @@
+import java.util.*
+
 fun main() {
+    val scanner = Scanner(System.`in`)
     print("1 va 999999999 oralig'ida son kiriting\nn=")
-    var n = readLine()!!.toInt()
+    var n = scanner.nextInt()
     print(tekshirish(n))
 }
 

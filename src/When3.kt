@@ -1,6 +1,9 @@
+import java.util.*
+
 fun main() {
+    val scanner = Scanner(System.`in`)
     print("1 va 999999999 oralig'ida son kiriting\nn=")
-    var n = readLine()!!.toInt()
+    var n = scanner.nextInt()
     print(checking(n))
 }
 
@@ -15,15 +18,15 @@ fun checking(n: Int): String{
     var son = n
 
     if (numberSize > 9) {
-        print("kiritilgan son 1 va 999999999 oralig'ida")
+        print("kiritilgan son 1 va 999999999 oralig'ida emas")
     }else if (n == 0) {
         print("nol")
     }else
         for (i in 1..numberSize) {
             if (isOne) {
                 if (haveAndNot(son % 10)){
-                    answer = "${one(son % 10)}"
-                    haveNumber = true
+                    answer = "${one(son % 10)} $answer ${uchgaKattari(i)}"
+//                    if (haveNumber) answer = "$answer  ${uchgaKattari(i)}"
                     isOne = false
                     isTen = true
                     son /= 10
@@ -35,7 +38,7 @@ fun checking(n: Int): String{
             }
             if (isTen) {
                 if (haveAndNot(son % 10)){
-                    answer = "${one(son % 10)} $answer"
+                    answer = "${ten(son % 10)} $answer"
                     haveNumber = true
                     isHundred = true
                     isTen = false
@@ -46,26 +49,45 @@ fun checking(n: Int): String{
                     son /= 10
                 }
             }
-            if (i == 3) {
-                if (son % 10 == 0) {
+            if (isHundred) {
+                if (haveAndNot(son % 10)){
+                    answer = "${hundred(son % 10)} $answer"
+                    haveNumber = true
+                    isHundred = false
+                    isOne = true
                     son /= 10
-                    continue
-                }
-                else{
-                    answer = hundred(son % 10) + " yuz " + answer
+                } else{
+                    isHundred = false
+                    isOne = true
                     son /= 10
                 }
             }
+
         }
     return answer
+}
+
+fun uchgaKattari(i: Int): String {
+    var str = when(i){
+//        1 until 3 -> "bir"
+        2 -> "ikki"
+        3 -> "uch"
+        4 -> "to'rt"
+        5 -> "besh"
+        6 -> "olti"
+        7 -> "yetti"
+        8 -> "sakkiz"
+        else -> "to'qqiz"
+    }
+    return str
 }
 
 fun haveAndNot(i: Int): Boolean {
     return (i != 0)
 }
 
-fun hundred(n: Int): String {
-    val result =  when(n){
+fun one(n: Int): String {
+    val result = when(n){
         1 -> "bir"
         2 -> "ikki"
         3 -> "uch"
@@ -94,17 +116,17 @@ fun ten(n: Int): String {
     return result
 }
 
-fun one(n: Int): String {
-    val result = when(n){
-        1 -> "bir"
-        2 -> "ikki"
-        3 -> "uch"
-        4 -> "to'rt"
-        5 -> "besh"
-        6 -> "olti"
-        7 -> "yetti"
-        8 -> "sakkiz"
-        else -> "to'qqiz"
+fun hundred(n: Int): String {
+    val result =  when(n){
+        1 -> "bir yuz"
+        2 -> "ikki yuz"
+        3 -> "uch yuz"
+        4 -> "to'rt yuz"
+        5 -> "besh yuz"
+        6 -> "olti yuz"
+        7 -> "yetti yuz"
+        8 -> "sakkiz yuz"
+        else -> "to'qqiz yuz"
     }
     return result
 }
