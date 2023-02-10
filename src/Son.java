@@ -18,81 +18,85 @@ public class Son {
         }
     }
 
-    private static void readingNumber(int son) {
+    private static void readingNumber(int n) {
         boolean isOne = true;
         boolean isTen = false;
         boolean isHundred = false;
         String result = "";
         for(int i = 1; i <= 3; i++) {
             if (isOne) {
-                result = one(son % 10) + " " + result;
+                result = one(n % 10);
                 isTen = true;
                 isOne = false;
-                son /= 10;
+                n /= 10;
             }
             if (isTen) {
-                result = ten(son % 10) + " " + result;
+                result = ten(n % 10) + " " + result;
                 isHundred = true;
                 isTen = false;
-                son /= 10;
+                n /= 10;
             }
             if (isHundred) {
-                result = ten(son % 10) + " yuz " + result;
+                result = hundred(n % 10) + " yuz " + result;
                 isHundred = false;
                 isOne = true;
-                son /= 10;
+                n /= 10;
             }
         }
-        out.println(result);
+        System.out.println(result);
     }
 
     private static String one(int i) {
-        String numResult = "";
+        String numOne = "";
         switch(i){
-            case 1: numResult = "bir";
-            case 2: numResult = "ikki";
-            case 3: numResult = "uch";
-            case 4: numResult = "to'rt";
-            case 5: numResult = "besh";
-            case 6: numResult = "olti";
-            case 7: numResult = "yetti";
-            case 8: numResult = "sakkiz";
-            default:numResult = "to'qqiz";
+            case 1-> numOne = "bir";
+            case 2-> numOne = "ikki";
+            case 3-> numOne = "uch";
+            case 4-> numOne = "to'rt";
+            case 5-> numOne = "besh";
+            case 6-> numOne = "olti";
+            case 7-> numOne = "yetti";
+            case 8-> numOne = "sakkiz";
+//            default->numOne = "to'qqiz";
         }
-        return numResult;
+        return numOne;
     }
     private static String ten(int i) {
-        int son = i;
-        String numResult = "";
-        switch(son){
-            case 1: numResult = "o'n";
-            case 2: numResult =  "yigirma";
-            case 3: numResult =  "o'ttiz";
-            case 4: numResult =  "qirq";
-            case 5: numResult =  "ellik";
-            case 6: numResult =  "oltmish";
-            case 7: numResult =  "yetmish";
-            case 8: numResult =  "sakson";
-            default:numResult =  "to'qson";
+        String numTen = "";
+        switch(i){
+            case 1-> numTen = "o'n";
+            case 2-> numTen = "yigirma";
+            case 3-> numTen = "o'ttiz";
+            case 4-> numTen = "qirq";
+            case 5-> numTen = "ellik";
+            case 6-> numTen = "oltmish";
+            case 7-> numTen = "yetmish";
+            case 8-> numTen = "sakson";
+//            default->numTen = "to'qson";
         }
-        final var numResult1 = numResult;
-        return numResult1;
+        return numTen;
     }
     private static String hundred(int i) {
-        String numResult = "";
+        String numHundred = "";
         switch(i){
-            case 1: numResult = "bir";
-            case 2: numResult = "ikki";
-            case 3: numResult = "uch";
-            case 4: numResult = "to'rt";
-            case 5: numResult = "besh";
-            case 6: numResult = "olti";
-            case 7: numResult = "yetti";
-            case 8: numResult = "sakkiz";
-            default:numResult = "to'qqiz";
+            case 1-> numHundred = "bir";
+            case 2-> numHundred = "ikki";
+            case 3-> numHundred = "uch";
+            case 4-> numHundred = "to'rt";
+            case 5-> numHundred = "besh";
+            case 6-> numHundred = "olti";
+            case 7-> numHundred = "yetti";
+            case 8-> numHundred = "sakkiz";
+//            default->numHundred = "to'qqiz";
         }
-        return numResult;
+        return numHundred;
     }
+
+
+
+
+
+
 
 //    private static boolean checking(int son) {
 //        boolean check = true;
