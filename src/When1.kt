@@ -1,6 +1,6 @@
 fun main() {
     print("1-7 oralig'ida son kiriting \nn=")
-    val n = readLine()!!.toInt()
+    val n = 10
     val natija = when(n){
         1 -> "Dushanba"
         2 -> "Seshanba"
