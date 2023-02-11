@@ -16,8 +16,11 @@ import java.util.*
 fun main() {
     println("Bugungi sana: ${today()}")
     println("☆O'zbekiston mobil aloqa operatori☆")
+    val list = mutableListOf<Abonent>()
+    list.add(Abonent("Hakimxon Sharifxonov", "935675520", 1.5f, "USELL"))
+    list.add(Abonent("Nozim Allayev", "905542004", 1.8f, "BEELINE"))
+    list.add(Abonent("Umarxon Usmonov", "998895511", 1.2f, "UZMOBILE"))
     showMenu()
-    val usell = Abonent("Umar", "986665566", 45f, "Uselll")
 }
 
 fun showMenu(){
@@ -28,8 +31,7 @@ fun showMenu(){
         4 - Abonent qidirish
         Tanlash -> 
     """.trimIndent())
-    val choose =  readLine()!!.toInt()
-    when(choose){
+    when(readLine()!!.toInt()){
         1 -> showMenuOperator()
         2 -> {
             println("bir")
@@ -50,16 +52,21 @@ fun showMenuOperator() {
         6 - ORQAGA
         Tanlash -> 
     """.trimIndent())
-    val choose =  readLine()!!.toInt()
-    when(choose){
+    when(readLine()!!.toInt()){
         1 -> abonentlar(1)
         2 -> abonentlar(2)
         3 -> abonentlar(3)
+        4 -> abonentlar(4)
+        5 -> abonentlar(5)
     }
 }
 
 fun abonentlar(i: Int) {
-
+    if (i == 5) {
+        for (a in listOf<Abonent>()) {
+        }
+        println("i == 5")
+    }
 }
 
 fun today(): String {
