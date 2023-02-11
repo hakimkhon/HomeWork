@@ -1,0 +1,1 @@
+Data classdan superclass sifatida foydalansa bo'lmaydi, chunki bu klass faqat malumot saqlash uchun hizmat qiladi

@@ -23,21 +23,23 @@ public class Son {
         boolean isTen = false;
         boolean isHundred = false;
         String result = "";
+        int a;
         for(int i = 1; i <= 3; i++) {
+            a = n % 10;
             if (isOne) {
-                result = one(n % 10);
+                result = one(a);
                 isTen = true;
                 isOne = false;
                 n /= 10;
             }
             if (isTen) {
-                result = ten(n % 10) + " " + result;
+                result = ten(a) + " " + result;
                 isHundred = true;
                 isTen = false;
                 n /= 10;
             }
             if (isHundred) {
-                result = hundred(n % 10) + " yuz " + result;
+                result = hundred(a) + " yuz " + result;
                 isHundred = false;
                 isOne = true;
                 n /= 10;
@@ -57,7 +59,7 @@ public class Son {
             case 6-> numOne = "olti";
             case 7-> numOne = "yetti";
             case 8-> numOne = "sakkiz";
-//            default->numOne = "to'qqiz";
+            default->numOne = "to'qqiz";
         }
         return numOne;
     }
@@ -72,7 +74,7 @@ public class Son {
             case 6-> numTen = "oltmish";
             case 7-> numTen = "yetmish";
             case 8-> numTen = "sakson";
-//            default->numTen = "to'qson";
+            default->numTen = "to'qson";
         }
         return numTen;
     }
