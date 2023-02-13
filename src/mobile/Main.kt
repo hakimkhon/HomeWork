@@ -4,24 +4,17 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-//class Operator{
-//    var sc: Scanner = Scanner(System.`in`)
-//    var list: List<Abonent> = ArrayList<Abonent>()
-//
-//    var tanlash = 0
-//    var soniUsel = 0
-//    var soniBeeline = 0
-//    var soniUzmobile = 0
-//}
 fun main() {
     println("Bugungi sana: ${today()}")
     println("☆O'zbekiston mobil aloqa operatori☆")
-    val list = mutableListOf<Abonent>()
-    list.add(Abonent("Hakimxon Sharifxonov", "935675520", 1.5f, "USELL"))
-    list.add(Abonent("Nozim Allayev", "905542004", 1.8f, "BEELINE"))
-    list.add(Abonent("Umarxon Usmonov", "998895511", 1.2f, "UZMOBILE"))
+    val lists = mutableListOf<Abonent>()
+    lists.add(Abonent("Hakimxon Sharifxonov", "935675520", 1.5f, "USELL"))
+    lists.add(Abonent("Nozim Allayev", "905542004", 1.8f, "BEELINE"))
+    lists.add(Abonent("Umarxon Usmonov", "998895511", 1.2f, "UZMOBILE"))
+    println(lists)
     showMenu()
 }
+
 
 fun showMenu(){
     print("""
@@ -64,6 +57,7 @@ fun showMenuOperator() {
 fun abonentlar(i: Int) {
     if (i == 5) {
         for (a in listOf<Abonent>()) {
+            print(a)
         }
         println("i == 5")
     }

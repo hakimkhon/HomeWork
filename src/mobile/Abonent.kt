@@ -1,11 +1,12 @@
 package mobile
 
-class Abonent(val ismi: String, val telNomer: String, val balans: Float, val operator: String) {
+class Abonent(val ismi: String, val telNomer: String, val balans: Float) {
+
+    constructor(operator: String){}
 
     fun printResult(){
-        println("$ismi - $telNomer -> $balans | $operator")
+//        println("$ismi - $telNomer -> $balans | $operator")
     }
-
 }
 
 
