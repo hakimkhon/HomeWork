@@ -1,17 +1,17 @@
 package mobile
 
+import mobile.data.Abonent
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 fun main() {
     println("Bugungi sana: ${today()}")
     println("☆O'zbekiston mobil aloqa operatori☆")
     val lists = mutableListOf<Abonent>()
-    lists.add(Abonent("Hakimxon Sharifxonov", "935675520", 1.5f, "USELL"))
-    lists.add(Abonent("Nozim Allayev", "905542004", 1.8f, "BEELINE"))
-    lists.add(Abonent("Umarxon Usmonov", "998895511", 1.2f, "UZMOBILE"))
-    println(lists)
+//    lists.add(Abonent("Hakimxon Sharifxonov", "935675520", 1.5f))
+//    lists.add(Abonent("Nozim Allayev", "905542004", 1.8f))
+//    lists.add(Abonent("Umarxon Usmonov", "998895511", 1.2f))
+//    println(lists)
     showMenu()
 }
 
