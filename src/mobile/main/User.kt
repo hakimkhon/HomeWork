@@ -5,6 +5,7 @@ import mobile.util.ServiceInterface
 import mobile.util.SotringInterface
 
 class User: ServiceInterface, SotringInterface {
+    private val listUser: ArrayList<Abonent> = ArrayList()
     fun sortingType(){
         println("""
             1. by Balance
@@ -14,7 +15,7 @@ class User: ServiceInterface, SotringInterface {
         """.trimIndent())
         print("Select service: ")
 
-        when(readLine()) {
+        when(readln()) {
             "1" -> sortByBalance()
             "2" -> sortByName()
             "3" -> allUserList()
@@ -24,16 +25,29 @@ class User: ServiceInterface, SotringInterface {
 
     override fun addUser() {
         print("Enter phone number: +998")
-        val phoneNumber = readLine()
+        val phoneNumber = readln()
         print("Enter full name: ")
-        val fullName = readLine()
+        val fullName = readln()
         print("Enter your balance: ")
-        val balance = readLine()!!.toDouble()
-        val userData = Abonent(fullName = fullName!!, phoneNumber = phoneNumber!!, balance = balance, company = findCompany(phoneNumber))
+        val balance = readln().toDouble()
+        val userData = Abonent(fullName = fullName, phoneNumber = phoneNumber, balance = balance, company = findCompany(phoneNumber))
+        if (Chekker().checkAll(userData)){
+            listUser.add(userData); println("-- user added ✅ --")
+        } else println("Something went wrong ❌")
     }
 
     override fun deleteUser() {
-        TODO("Not yet implemented")
+        var count = 0
+        listUser.sortBy { it.fullName }
+        listUser.forEach {
+            count++
+            print("$count ."); printUserInfo(it)
+        }
+        print("input user id to delete:") //deleted by id , fullName or phone number
+        val userId = readln().toInt()
+        printUserInfo(listUser[userId-1])
+        listUser.removeAt(userId-1)
+        println("-- user deleted ✅ --")
     }
 
     override fun findCompany(phoneNumber: String): String {
@@ -46,7 +60,20 @@ class User: ServiceInterface, SotringInterface {
     }
 
     override fun searchUser() {
-        TODO("Not yet implemented")
+        println("""
+            1. by Name
+            2. by Lastname
+            3. by Company
+            0. Back
+        """.trimIndent())
+        print("Select service: ")
+
+        when(readln()) {
+            "1" -> searchByName()
+            "2" -> searchByLastName()
+            "3" -> searchByCompany()
+            else ->  println("Invalid operator selected ❌")
+        }
     }
 
     override fun allUserList() {
@@ -60,4 +87,42 @@ class User: ServiceInterface, SotringInterface {
     override fun sortByBalance() {
         TODO("Not yet implemented")
     }
+
+    //region Functions
+    private fun printUserInfo(data: Abonent){
+        println("👨 ${data.fullName},📞 ${data.phoneNumber}, 💰 ${data.balance}, 🏦 ${data.company}")
+    }
+
+    private fun formatUserName(name : String): String{
+        return name.lowercase().split(" ").joinToString(separator = " ", transform = String::capitalize)
+    }
+
+    //endregion
+
+    //region Search
+    private fun searchByName(){
+        print("Enter name: ")
+        val name = readln()
+        listUser.forEach {
+            if ( it.fullName.contains(name.trim().lowercase().capitalize()))  printUserInfo(it)
+        }
+    }
+
+    private fun searchByLastName(){
+        print("Enter lastname: ")
+        val name = readln()
+        listUser.forEach {
+            if (it.fullName.contains(name.trim().lowercase().capitalize()))   printUserInfo(it)
+        }
+    }
+
+    private fun searchByCompany(){
+        print("Enter company name: ")
+        val name = readln()
+        listUser.forEach {
+            if ( it.company.contains(name.trim().lowercase().capitalize()))  printUserInfo(it)
+        }
+    }
+
+    //endregion
 }
